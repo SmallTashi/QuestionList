@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorEndLogin">#798DFA</color>
+    <color name="colorStartLogin">#58B1FC</color>
+    <color name="mine_text">#FEFEFE</color>
+    <color name="bg_color">#F6F6F6</color>
+    <color name="bg_login_bottom">#F6F6F6</color>
+    <color name="list_text">#333333</color>
+    <color name="answer_comment">#666666</color>
+    <color name="question_kind">#7097FB</color>
+    <color name="adopt_text">#777777</color>
+    <color name="White">#ffffff</color>
+
+    <color name="colorPrimary">#F596AA</color>
+    <color name="colorPrimaryDark">#DB4D6D</color>
+    <color name="colorAccent">#F8C3CD</color>
+    <color name="colorBackground">#fffffb</color>
+</resources>

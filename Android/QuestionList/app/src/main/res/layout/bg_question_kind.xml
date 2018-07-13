@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/question_item_lay_kind"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:textColor="@color/question_kind"
+        android:text="@string/question_item_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/question_item_kind"
+        android:textColor="@color/question_kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="线代"
+        />
+    <TextView
+        android:textColor="@color/question_kind"
+        android:text="@string/question_item_char"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

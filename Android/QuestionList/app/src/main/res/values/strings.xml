@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuestionList</string>
+    <string name="question_item_char">#</string>
+    <string name="question_all">全 部</string>
+    <string name="question_study">学 习</string>
+    <string name="question_life">生 活</string>
+    <string name="question_useless">情 感</string>
+    <string name="answer_comment">评论</string>
+</resources>
