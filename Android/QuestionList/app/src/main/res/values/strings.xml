@@ -6,4 +6,7 @@
     <string name="question_life">生 活</string>
     <string name="question_useless">情 感</string>
     <string name="answer_comment">评论</string>
+    <string name="study">学习</string>
+    <string name="emotion">情感</string>
+    <string name="other">其他</string>
 </resources>

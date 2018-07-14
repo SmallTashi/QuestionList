@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 
 public class Third_Fragment extends Fragment {
     RecyclerView recyclerView;
+    public static final String TAG = "Tag";
+
     SwipeRefreshLayout refreshLayout;
     ArrayList<Question> questions;
     Question mark;
@@ -33,8 +36,7 @@ public class Third_Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if( getArguments()!=null)
-            ArrayListFragment.num = 3;
+
     }
     @Nullable
     @Override
@@ -46,8 +48,8 @@ public class Third_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recyclerView);
-        refreshLayout = view.findViewById(R.id.refresh);
+        recyclerView = view.findViewById(R.id.page_three);
+//        refreshLayout = view.findViewById(R.id.refresh);
         HttpRequest.sentHttpsRequest(PackParameter.Question_List("0", "其他"), Config.Api_Question_List, new HttpRequest.Callback() {
             @Override
             public void onSuccess(HttpRequest.Response response) {
@@ -59,6 +61,7 @@ public class Third_Fragment extends Fragment {
 
             @Override
             public void onFiled(Exception e) {
+                Log.d(TAG,e.toString());
                 Toast.makeText(getContext(),e.toString(),Toast.LENGTH_LONG).show();
             }
         });
@@ -85,6 +88,7 @@ public class Third_Fragment extends Fragment {
 
                     @Override
                     public void onFiled(Exception e) {
+                        Log.d(TAG,e.toString());
                         Toast.makeText(getContext(),e.toString(),Toast.LENGTH_LONG).show();
                     }
                 });

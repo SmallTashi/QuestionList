@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 
 public class First_Fragment extends Fragment {
     RecyclerView recyclerView;
+    public static final String TAG = "Tag";
     SwipeRefreshLayout refreshLayout;
     ArrayList<Question> questions;
     Question mark;
@@ -33,20 +35,20 @@ public class First_Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if( getArguments()!=null)
-            ArrayListFragment.num = 1;    }
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.page_one,container,false);
+        return inflater.inflate(R.layout.page_one, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recyclerView);
-        refreshLayout = view.findViewById(R.id.refresh);
         HttpRequest.sentHttpsRequest(PackParameter.Question_List("0", "学习"), Config.Api_Question_List, new HttpRequest.Callback() {
             @Override
             public void onSuccess(HttpRequest.Response response) {
@@ -58,19 +60,21 @@ public class First_Fragment extends Fragment {
 
             @Override
             public void onFiled(Exception e) {
-                Toast.makeText(getContext(),e.toString(),Toast.LENGTH_LONG).show();
+                Log.d(TAG,e.toString());
+                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
     }
-    public void setRecycler(mAdapter adapter){
+
+    public void setRecycler(mAdapter adapter) {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
     }
 
-    public void refresh(){
+    public void refresh() {
 
         new Thread(new Runnable() {
             @Override
@@ -85,7 +89,9 @@ public class First_Fragment extends Fragment {
 
                     @Override
                     public void onFiled(Exception e) {
-                        Toast.makeText(getContext(),e.toString(),Toast.LENGTH_LONG).show();
+                        Log.d(TAG,e.toString());
+
+                        Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
                     }
                 });
             }

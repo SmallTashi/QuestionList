@@ -41,7 +41,6 @@ public class HttpRequest {
                     out = connection.getOutputStream();
                     out.write(parameter.getBytes());
                     out.flush();
-                    out.close();
                     Log.d("Tag",String.valueOf(connection.getResponseCode()));
                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                         final byte[] in = ReadStream(connection.getInputStream());

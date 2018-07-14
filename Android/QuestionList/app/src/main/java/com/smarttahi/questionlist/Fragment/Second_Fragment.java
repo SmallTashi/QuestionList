@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 
 public class Second_Fragment extends Fragment {
     RecyclerView recyclerView;
+    public static final String TAG = "tag";
+
     SwipeRefreshLayout refreshLayout;
     ArrayList<Question> questions;
     Question mark;
@@ -32,8 +35,7 @@ public class Second_Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-            ArrayListFragment.num = 2;
+
     }
 
     @Nullable
@@ -46,9 +48,9 @@ public class Second_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recyclerView);
-        refreshLayout = view.findViewById(R.id.refresh);
-        HttpRequest.sentHttpsRequest(PackParameter.Question_List("0", "生活"), Config.Api_Question_List, new HttpRequest.Callback() {
+        recyclerView = view.findViewById(R.id.page_two_rv);
+//        refreshLayout = view.findViewById(R.id.refresh);
+        HttpRequest.sentHttpsRequest(PackParameter.Question_List("0", "情感"), Config.Api_Question_List, new HttpRequest.Callback() {
             @Override
             public void onSuccess(HttpRequest.Response response) {
                 questions = JSONmanager.getQuestionList(response.getDate());
@@ -59,6 +61,7 @@ public class Second_Fragment extends Fragment {
 
             @Override
             public void onFiled(Exception e) {
+                Log.d(TAG,e.toString());
                 Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
         });
@@ -77,7 +80,7 @@ public class Second_Fragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                HttpRequest.sentHttpsRequest(PackParameter.Question_List("0", "生活"), Config.Api_Question_List, new HttpRequest.Callback() {
+                HttpRequest.sentHttpsRequest(PackParameter.Question_List("0", "情感"), Config.Api_Question_List, new HttpRequest.Callback() {
                     @Override
                     public void onSuccess(HttpRequest.Response response) {
                         questions = JSONmanager.getQuestionList(response.getDate());
@@ -87,6 +90,7 @@ public class Second_Fragment extends Fragment {
 
                     @Override
                     public void onFiled(Exception e) {
+                        Log.d(TAG,e.toString());
                         Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
                     }
                 });
