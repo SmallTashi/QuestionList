@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.smarttahi.questionlist.tools.Data.Question;
 import com.smarttahi.questionlist.tools.Data.User;
 
 
@@ -21,11 +22,31 @@ public class MyApplication extends Application {
     protected static Context thisContext;
 //    public static User user;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         thisContext = getApplicationContext();
     }
+
+    public static final Question getAutoQuestion(){
+        Question bean = new Question();
+        bean.setAnswer_num(0);
+        bean.setCreated_at("created_at");
+        bean.setTags("tags");
+        bean.setTitle("title");
+        bean.setDescription("description");
+        bean.setDisappear_at("disappear_at");
+        bean.setGender("gender");
+        bean.setId(0);
+        bean.setNickname("nickname");
+        bean.setKind("kind");
+        bean.setIs_anonymous(0);
+        bean.setReward(1000);
+//        bean.setPhoto_thumbnail_src(object.getString("photo_thumbnail_src"));;
+        return bean;
+    }
+
 
     public static void keepState() {
         SharedPreferences sharedPreferences = getThisContext().getSharedPreferences("user", Context.MODE_PRIVATE);

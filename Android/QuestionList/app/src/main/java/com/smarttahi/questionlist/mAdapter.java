@@ -14,7 +14,7 @@ import com.smarttahi.questionlist.tools.Data.*;
 import java.util.ArrayList;
 
 public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
-    private ArrayList<Question> question = null;
+    private ArrayList<Question> question;
 
     public mAdapter(ArrayList<Question> q) {
         question = q;
@@ -24,7 +24,10 @@ public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
     @NonNull
     @Override
     public mViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout,parent,false);
+        return new mViewHolder(view,0);
+
+       /* View view;
         if (getItemViewType(viewType) == mViewHolder.FOOTER) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_header, parent, false);
             return new mViewHolder(view, mViewHolder.FOOTER);
@@ -34,7 +37,7 @@ public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false);
             return new mViewHolder(view, mViewHolder.CENTER);
-        }
+        }*/
     }
 
     @Override

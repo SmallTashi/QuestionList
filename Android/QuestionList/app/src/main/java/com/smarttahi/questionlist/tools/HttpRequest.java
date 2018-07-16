@@ -19,6 +19,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class HttpRequest {
 
     private static OutputStream out = null;
+    private static final String tag="HttpRequest";
 
     private static HttpsURLConnection connection = null;
 
@@ -38,17 +39,20 @@ public class HttpRequest {
                     connection.setUseCaches(false);
                     connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                     connection.connect();
+
                     out = connection.getOutputStream();
+
                     out.write(parameter.getBytes());
                     out.flush();
-                    Log.d("Tag",String.valueOf(connection.getResponseCode()));
+
+                    Log.d(tag,String.valueOf(connection.getResponseCode()));
                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                         final byte[] in = ReadStream(connection.getInputStream());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
                                 Response data = new Response(in);
-                                Log.d("Tag", data.getDate());
+                                Log.d(tag, data.getDate());
                                 if(data.getDate()!=null&&data.getDate().length()!=0){
                                     callback.onSuccess(data);
                                 }
@@ -60,7 +64,7 @@ public class HttpRequest {
                             @Override
                             public void run() {
                                 try {
-                                    Log.d("Tag",String.valueOf(connection.getResponseCode()));
+                                    Log.d(tag,String.valueOf(connection.getResponseCode()));
                                     callback.onFiled(new Exception(String.valueOf(connection.getResponseCode())));
                                 } catch (IOException e) {
                                     callback.onFiled(e);
@@ -91,6 +95,7 @@ public class HttpRequest {
                         try {
                             out.close();
                         } catch (IOException e) {
+                            Log.d("tag",e.toString());
                             e.printStackTrace();
                         }
                     }
@@ -111,6 +116,7 @@ public class HttpRequest {
                 Info = object.getString("info");
                 Date = object.getString("data");
             } catch (JSONException e) {
+                Log.d(tag,e.toString());
                 e.printStackTrace();
                 Date = null;
             }
@@ -153,6 +159,7 @@ public class HttpRequest {
             }
             outputStream.close();
         } catch (IOException e) {
+            Log.d(tag,e.toString());
             e.printStackTrace();
         }
         return outputStream.toByteArray();

@@ -1,5 +1,7 @@
 package com.smarttahi.questionlist.tools;
 
+import android.util.Log;
+
 import com.smarttahi.questionlist.tools.Data.Question;
 import com.smarttahi.questionlist.tools.Data.User;
 
@@ -8,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class JSONmanager {
     public static int getArrayNumber(String data) throws JSONException {
@@ -51,7 +54,8 @@ public class JSONmanager {
         try {
             list = new ArrayList<>();
             array = new JSONArray(data);
-            for (int i = 0; array.getJSONObject(i)!=null; i++) {
+            Stack<Question> stack = new Stack<>();
+            for (int i = 0; array.getJSONObject(i)!=null||i<=10; i++) {
                 JSONObject object =array.getJSONObject(i);
                 Question bean = new Question();
                 bean.setAnswer_num(object.getInt("answer_num"));
@@ -67,11 +71,16 @@ public class JSONmanager {
                 bean.setIs_anonymous(object.getInt("is_anonymous"));
                 bean.setReward(object.getInt("reward"));
                 bean.setPhoto_thumbnail_src(object.getString("photo_thumbnail_src"));
-                list.add(bean);
+                stack.push(bean);
+            }
+            for (; !stack.empty();) {
+                list.add(stack.pop());
             }
         } catch (JSONException e) {
+            Log.d("JSONManager",e.toString());
             e.printStackTrace();
         }
        return list;
+
     }
 }

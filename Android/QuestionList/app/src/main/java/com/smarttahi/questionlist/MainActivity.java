@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
         pager = findViewById(R.id.pager);
         adapter = new mPagerAdapter(getSupportFragmentManager(), COUNT);
         pager.setAdapter(adapter);
-        setListener(title,pager);
+        setListener(title, pager);
     }
 
-    public void setListener(TabLayout tabLayout, final ViewPager pager){
+    public void setListener(TabLayout tabLayout, final ViewPager pager) {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
 
