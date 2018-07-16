@@ -14,7 +14,7 @@ import com.smarttahi.questionlist.tools.Data.*;
 import java.util.ArrayList;
 
 public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
-    private ArrayList<Question> question;
+    private ArrayList<Question> question = null;
 
     public mAdapter(ArrayList<Question> q) {
         question = q;
@@ -54,7 +54,7 @@ public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
 
     @Override
     public int getItemCount() {
-        return question.size();
+      return question.size();
     }
 
 
