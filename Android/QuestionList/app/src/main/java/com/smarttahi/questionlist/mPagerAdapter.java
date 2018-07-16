@@ -3,24 +3,26 @@ package com.smarttahi.questionlist;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
+import com.smarttahi.questionlist.Fragment.BaseFragment;
 import com.smarttahi.questionlist.Fragment.First_Fragment;
 import com.smarttahi.questionlist.Fragment.Second_Fragment;
 import com.smarttahi.questionlist.Fragment.Third_Fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class mPagerAdapter extends FragmentPagerAdapter {
-    private ArrayList<Fragment> fragments = new ArrayList<>();
+    private ArrayList<BaseFragment> fragments;
 
     private int count;
-     mPagerAdapter(FragmentManager fm,int count) {
+     mPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> fragments) {
         super(fm);
-        this.count = count;
-         fragments.add(new First_Fragment());
-         fragments.add(new Second_Fragment());
-         fragments.add(new Third_Fragment());
+        this.count = fragments.size();
+         this.fragments = fragments;
     }
+
 
     @Override
     public Fragment getItem(int position) {

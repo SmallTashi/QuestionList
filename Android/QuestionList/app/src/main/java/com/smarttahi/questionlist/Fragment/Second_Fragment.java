@@ -15,8 +15,6 @@ public class Second_Fragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setKind("情感");
-        setPage(0);
     }
 
 
@@ -31,10 +29,10 @@ public class Second_Fragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.page_two_rv);
         refreshLayout = view.findViewById(R.id.refresh_two);
-        loadData();
-        adapter = new mAdapter(questions);
+
+        adapter = new mAdapter(loadData("0","情感"));
         setRecycler(adapter);
-        refresh(0);
+        refresh("1","情感");
     }
 
 }

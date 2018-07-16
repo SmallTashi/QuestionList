@@ -1,5 +1,6 @@
 package com.smarttahi.questionlist;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,14 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
+
+import com.smarttahi.questionlist.Fragment.BaseFragment;
+import com.smarttahi.questionlist.Fragment.First_Fragment;
+import com.smarttahi.questionlist.Fragment.Second_Fragment;
+import com.smarttahi.questionlist.Fragment.Third_Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public ViewPager pager;
@@ -36,10 +45,16 @@ public class MainActivity extends AppCompatActivity {
         title.addTab(one);
         title.addTab(two);
         title.addTab(three);
+        ArrayList<BaseFragment> fragments = new ArrayList<>();
+        fragments.add(new First_Fragment());
+        fragments.add(new Second_Fragment());
+        fragments.add(new Third_Fragment());
         pager = findViewById(R.id.pager);
-        adapter = new mPagerAdapter(getSupportFragmentManager(), COUNT);
+        adapter = new mPagerAdapter(getSupportFragmentManager(), fragments);
         pager.setAdapter(adapter);
         setListener(title, pager);
+        pager.setPageMargin(10);
+
     }
 
     public void setListener(TabLayout tabLayout, final ViewPager pager) {

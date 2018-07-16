@@ -15,8 +15,6 @@ public class Third_Fragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setKind("其他");
-        setPage(0);
     }
 
 
@@ -31,10 +29,9 @@ public class Third_Fragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.page_three_rv);
         refreshLayout = view.findViewById(R.id.refresh_three);
-        loadData();
-        adapter = new mAdapter(questions);
+        adapter = new mAdapter(loadData("0","其他"));
         setRecycler(adapter);
-        refresh(0);
+        refresh("1","其他");
     }
 
 }

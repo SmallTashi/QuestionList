@@ -20,23 +20,14 @@ import com.smarttahi.questionlist.tools.PackParameter;
 import java.util.ArrayList;
 
 public class BaseFragment extends Fragment {
-    RecyclerView recyclerView;
+    public RecyclerView recyclerView;
     public static final String TAG = "Fragment_three";
-    SwipeRefreshLayout refreshLayout;
-    ArrayList<Question> questions = null;
-    ArrayList<Question> changedList = new ArrayList<>();
-    private   String page = "0";
-    private String kind = "学习";
+   public SwipeRefreshLayout refreshLayout;
+   public ArrayList<Question> questions = null;
+   public ArrayList<Question> changedList = new ArrayList<>();
     mAdapter adapter;
 
 
-    public void setKind(String kind){
-        this.kind = kind;
-    }
-
-    public void setPage(int page){
-        this.page = Integer.toString(page);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +42,7 @@ public class BaseFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    public void loadData() {
+    public ArrayList<Question> loadData(String page,String kind) {
         HttpRequest.sentHttpsRequest(PackParameter.Question_List(page, kind), Config.Api_Question_List, new HttpRequest.Callback() {
             @Override
             public void onSuccess(HttpRequest.Response response) {
@@ -69,6 +60,8 @@ public class BaseFragment extends Fragment {
             }
         });
 
+        return questions;
+
 //        this.adapter.notifyItemRangeRemoved(0, previousNum);
 //        COUNT = q.size();
 //        this.adapter.notifyItemChanged(0, q);
@@ -77,9 +70,9 @@ public class BaseFragment extends Fragment {
 
 
 
-    public void refresh(int LoadPage) {
-        LoadPage++;
-        setPage(LoadPage);
+    public void refresh(String p,String k) {
+        final String page = p;
+        final String kind = k;
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

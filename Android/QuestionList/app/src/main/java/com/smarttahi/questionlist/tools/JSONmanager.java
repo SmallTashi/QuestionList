@@ -49,12 +49,12 @@ public class JSONmanager {
     }
 
     public static ArrayList<Question> getQuestionList(String data){
-        JSONArray array = null;
+        JSONArray array ;
         ArrayList<Question> list =null;
         try {
             list = new ArrayList<>();
             array = new JSONArray(data);
-            Stack<Question> stack = new Stack<>();
+
             for (int i = 0; array.getJSONObject(i)!=null||i<=10; i++) {
                 JSONObject object =array.getJSONObject(i);
                 Question bean = new Question();
@@ -71,10 +71,13 @@ public class JSONmanager {
                 bean.setIs_anonymous(object.getInt("is_anonymous"));
                 bean.setReward(object.getInt("reward"));
                 bean.setPhoto_thumbnail_src(object.getString("photo_thumbnail_src"));
-                stack.push(bean);
+                list.add(bean);
             }
-            for (; !stack.empty();) {
-                list.add(stack.pop());
+           ArrayList<Question> q ;
+            q=list;
+            list.clear();
+            for (int i = 9,j =0; i >=0; i--,j++) {
+                list.add(j,q.get(i));
             }
         } catch (JSONException e) {
             Log.d("JSONManager",e.toString());

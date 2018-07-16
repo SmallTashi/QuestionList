@@ -2,19 +2,18 @@ package com.smarttahi.questionlist;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.smarttahi.questionlist.R;
-import com.smarttahi.questionlist.tools.Data.*;
+import com.smarttahi.questionlist.tools.Data.Question;
 
 import java.util.ArrayList;
 
 public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
-    private ArrayList<Question> question = null;
+    private ArrayList<Question> question ;
 
     public mAdapter(ArrayList<Question> q) {
         question = q;
@@ -54,12 +53,12 @@ public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
 
     @Override
     public int getItemCount() {
-      return question.size();
+        return question.size();
     }
 
 
     public void refreshItem(ArrayList<Question> Q) {
-        question.clear();
+
         question=Q;
         notifyDataSetChanged();
     }
@@ -67,9 +66,9 @@ public class mAdapter extends RecyclerView.Adapter<mViewHolder> {
 
 
 class mViewHolder extends RecyclerView.ViewHolder {
-    public static final int HEADER = -1;
-    public static final int FOOTER = 1;
-    public static final int CENTER = 0;
+//    public static final int HEADER = -1;
+//    public static final int FOOTER = 1;
+    private static final int CENTER = 0;
     public TextView description;
     public TextView id;
     //    public ImageView head;
@@ -92,10 +91,10 @@ class mViewHolder extends RecyclerView.ViewHolder {
             time = itemView.findViewById(R.id.question_time);
             integral = itemView.findViewById(R.id.question_item_pay);
             title = itemView.findViewById(R.id.question_item_title);
-        } else if (type == HEADER) {
-            header = itemView.findViewById(R.id.header);
-        } else {
-            footer = itemView.findViewById(R.id.footer);
+//        } else if (type == HEADER) {
+//            header = itemView.findViewById(R.id.header);
+//        } else {
+//            footer = itemView.findViewById(R.id.footer);
         }
     }
 }
